@@ -1,26 +1,40 @@
-local luasql = require "luasql.odbc"
+-- 加载 LuaSQL 模块
+local mysql = require "luasql.mysql"
 
--- 创建环境对象
-local env = assert(luasql.odbc())
-
--- 连接字符串
-local connection_string =
-"Driver={SQL Server};Server=YourServerName;Database=YourDatabaseName;Uid=YourUsername;Pwd=YourPassword;"
+-- 数据库连接信息
+local db_config = {
+    host = "localhost",
+    user = "用户名",
+    password = "密码",
+    database = "数据库名"
+}
 
 -- 连接到数据库
-local conn = assert(env:connect(connection_string))
+local env = assert(mysql.mysql())
+local conn = assert(env:connect(db_config.database, db_config.user, db_config.password, db_config.host))
 
--- 执行SQL查询
-local cur = assert(conn:execute("SELECT * FROM YourTable"))
+-- 要插入的数据
+local data = {
+    name = "张三",
+    age = 25,
+    city = "北京"
+}
 
--- 获取结果
-local row = cur:fetch({}, "a")
-while row do
-    print(string.format("ID: %s, Name: %s", row.ID, row.Name))
-    row = cur:fetch(row, "a")
+-- 构造 SQL 插入语句
+local sql = string.format("INSERT INTO users (name, age, city) VALUES ('%s', %d, '%s')",
+    conn:escape(data.name), data.age, conn:escape(data.city))
+
+-- 执行 SQL 语句
+local cursor, err = conn:execute(sql)
+
+-- 检查是否出错
+if not cursor then
+    print("插入数据出错: ", err)
+else
+    print("数据插入成功！")
+    cursor:close()
 end
 
--- 关闭连接
-cur:close()
+-- 关闭数据库连接
 conn:close()
 env:close()
