@@ -7,7 +7,7 @@
 #!name=pt_key
 #!desc=Auto update pt_key
 #!system=ios
-#!arguments=qinglongHost:https://qlong.iiep.cn:4443,clientId:"0tPn_BcbBwpX",clientSecret:"tqZeuz2MuM0UJl5hQANhl-RU"
+#!arguments=qinglongHost:https://192.168.1.10:5700,clientId:"",clientSecret:""
 
 [Script]
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig) requires-body=1,script-path=scripts/pt_key.js, argument=qinglongHost={{{qinglongHost}}}&clientId={{{clientId}}}&clientSecret={{{clientSecret}}}
