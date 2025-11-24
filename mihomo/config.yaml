@@ -203,6 +203,7 @@ proxy_groups: &proxy_groups
       - ALL·所有地区
       - ALL·负载均衡
       - ALL·延迟最低
+      - ALL.自选代理
       - ⛔️ 禁止·拒绝连接
       - 🌐 本机·本地直连
 # —————————
@@ -214,10 +215,17 @@ proxy-groups:
       - ALL·所有地区
       - ALL·负载均衡
       - ALL·延迟最低
-      - 🌐 本机·本地直连 
+      - ALL.自选代理
+      - 🌐 本机·本地直连
       
   - name: ALL·所有地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
+    type: select
+    <<: *A
+
+  - name: ALL.自选代理
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei|ww)).*$"
     type: select
     <<: *A
 
@@ -300,6 +308,10 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GitHub.svg"
     <<: *proxy_groups
 
+  - name: Notion
+    icon: "https://cdn.jsdelivr.net/gh/xiaoxya/mynode/icon/notion.svg"
+    <<: *proxy_groups
+
   - name: Twitter(X)
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Twitter.svg"
     <<: *proxy_groups
@@ -353,6 +365,7 @@ proxy-groups:
     proxies:
       - 🌐 本机·本地直连
       - ⛔️ 禁止·拒绝连接
+
 
 # —————————
 
@@ -545,6 +558,11 @@ rule-providers:
     <<: *Domain
     path: ./rules/PayPal.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs"
+
+  Notion_域:
+    <<: *Domain
+    path: ./rules/Notion.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Notion/Notion_OCD_Domain.mrs"
 # —————————
 
 rules:
@@ -609,6 +627,8 @@ rules:
   - RULE-SET,Speedtest_域,Speedtest
 
   - RULE-SET,PayPal_域,PayPal
+
+  - RULE-SET,Notion_域,Notion
 
   - RULE-SET,Private_域,🌐 本机·本地直连
   - RULE-SET,Private_IP,🌐 本机·本地直连,no-resolve
