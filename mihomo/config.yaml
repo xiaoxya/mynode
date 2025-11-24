@@ -284,6 +284,10 @@ proxy-groups:
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/GoogleFCM.svg"
     <<: *proxy_groups
 
+  - name: PayPal
+    icon: "https://cdn.jsdelivr.net/gh/xiaoxya/mynode/icon/paypal.svg"
+    <<: *proxy_groups
+
   - name: Facebook
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Facebook.svg"
     <<: *proxy_groups
@@ -536,6 +540,11 @@ rule-providers:
     <<: *Domain
     path: ./rules/Speedtest.mrs
     url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/Speedtest/Speedtest_OCD_Domain.mrs"
+
+  PayPal_域:
+    <<: *Domain
+    path: ./rules/PayPal.mrs
+    url: "https://cdn.jsdelivr.net/gh/GitMetaio/rule@master/rule/Clash/PayPal/PayPal_OCD_Domain.mrs"
 # —————————
 
 rules:
@@ -596,6 +605,10 @@ rules:
 
   - RULE-SET,Telegram_域,Telegram
   - RULE-SET,Telegram_IP,Telegram,no-resolve
+
+  - RULE-SET,Speedtest_域,Speedtest
+
+  - RULE-SET,PayPal_域,PayPal
 
   - RULE-SET,Private_域,🌐 本机·本地直连
   - RULE-SET,Private_IP,🌐 本机·本地直连,no-resolve
