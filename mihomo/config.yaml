@@ -67,14 +67,14 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     override:
       additional-prefix: "My✅："
     path: ./proxies/1.自建订阅.yaml
-    url: "订阅地址1"
+    url: ""
 
   2.备用地址:
     <<: *p
     override:
       additional-prefix: "✈️："
     path: ./proxies/2.备用地址.yaml
-    url: "订阅地址2"
+    url: ""
 
 
 
@@ -203,7 +203,8 @@ proxy_groups: &proxy_groups
       - ALL·所有地区
       - ALL·负载均衡
       - ALL·延迟最低
-      - ALL.自选代理
+      - ALL.台湾
+      - ALL.香港
       - ⛔️ 禁止·拒绝连接
       - 🌐 本机·本地直连
 # —————————
@@ -215,17 +216,12 @@ proxy-groups:
       - ALL·所有地区
       - ALL·负载均衡
       - ALL·延迟最低
-      - ALL.自选代理
+      - ALL.台湾
+      - ALL.香港
       - 🌐 本机·本地直连
       
   - name: ALL·所有地区
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/Globe.svg"
-    type: select
-    <<: *A
-
-  - name: ALL.自选代理
-    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei|ww)).*$"
     type: select
     <<: *A
 
@@ -366,6 +362,17 @@ proxy-groups:
       - 🌐 本机·本地直连
       - ⛔️ 禁止·拒绝连接
 
+  - name: ALL.台湾
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei|ww)).*$"
+    type: select
+    <<: *A
+
+  - name: ALL.香港
+    icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
+    filter: "^(?=.*(港|HK|hk|Hong Kong|HongKong|hongkong)).*$"
+    type: select
+    <<: *A
 
 # —————————
 
