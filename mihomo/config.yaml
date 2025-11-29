@@ -67,14 +67,14 @@ proxy-providers: # ← 此函数位置请勿变动！此为模块更新时备份
     override:
       additional-prefix: "My✅："
     path: ./proxies/1.自建订阅.yaml
-    url: ""
+    url: "https:///xsM2IAaB8A6etnlGI665/download/collection/My?target=ClashMeta"
 
   2.备用地址:
     <<: *p
     override:
       additional-prefix: "✈️："
     path: ./proxies/2.备用地址.yaml
-    url: ""
+    url: "https:///xsM2IAaB8A6etnlGI665/download/69%E4%BA%91?target=ClashMeta"
 
 
 
@@ -364,7 +364,7 @@ proxy-groups:
 
   - name: ALL.台湾
     icon: "https://cdn.jsdelivr.net/gh/GitMetaio/Surfing@rm/Home/icon/CN.svg"
-    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei|ww)).*$"
+    filter: "^(?=.*(台|新北|彰化|TW|Taiwan|taipei|ww|🇹🇼)).*$"
     type: select
     <<: *A
 
